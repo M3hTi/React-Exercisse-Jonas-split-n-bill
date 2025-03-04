@@ -46,6 +46,7 @@ function App() {
 
   function handlerSelectItem(id) {
     setCurOpen((s) => (s === id ? null : id));
+    setFormOpen(false);
   }
 
   // for add friend form
@@ -77,7 +78,9 @@ function App() {
         friend.id === curOpen
           ? {
               ...friend,
-              balance: didIPay ? friendExpense : -urExpense,
+              balance: didIPay
+                ? friend.balance + friendExpense
+                : friend.balance - urExpense,
             }
           : friend
       )
